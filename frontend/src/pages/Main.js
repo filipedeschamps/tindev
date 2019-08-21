@@ -14,6 +14,11 @@ export default function Main({ match }) {
     const [users, setUsers] = useState([])
     const [matchDev, setMatchDev] = useState(false)
 
+    /*
+     * There functions should be external to this component,
+     * avoid creating another reference on each render
+     * call.
+     */
     useEffect( () => {
         async function loadUsers() {
             const response = await api.get('/devs', {

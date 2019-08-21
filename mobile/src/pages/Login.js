@@ -17,6 +17,12 @@ export default function Login( {navigation }) {
         })
     }, [])
 
+    /* Avoid creating new functions inside render
+     * and functional components, it turns out
+     * that creating a new reference to a function
+     * everytime a render function runs (which happens
+     * pretty often) can lead to performance issues.
+     */
     async function handleLogin() {
         const response = await api.post('/devs', { username: user })
         const { _id } = response.data

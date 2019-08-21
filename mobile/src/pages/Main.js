@@ -18,6 +18,12 @@ export default function Main({ navigation }) {
     const [matchDev, setMatchDev] = useState(false)
 
     useEffect( () => {
+        /* Avoid creating new functions inside render
+         * and functional components, it turns out
+         * that creating a new reference to a function
+         * everytime a render function runs (which happens
+         * pretty often) can lead to performance issues.
+         */
         async function loadUsers() {
             const response = await api.get('/devs', {
                 headers: {
