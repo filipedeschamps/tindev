@@ -18,6 +18,12 @@ module.exports = {
 
         console.log(`User ${loggedDev.user} liked ${targetDev.user}`)
 
+        /* This could be a performance issue, since `includes` method is
+         * O(n), for a large set of users this could turn to be an overhead.
+         *
+         * It would need to have some optimizations here in order to
+         * this to be fast enough.
+         */
         if (targetDev.likes.includes(loggedDev._id)) {
             console.log('QUE MASSA DEU MATCH!')
             const loggedSocket = request.connectedUsers[user]
